@@ -1,8 +1,8 @@
 import 'package:evrekacase/helper.dart';
 import 'package:evrekacase/modules/GlobalWidgets/Buttons.dart';
+import 'package:evrekacase/modules/GlobalWidgets/Dialogs.dart';
 import 'package:evrekacase/modules/GlobalWidgets/TextFields.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'LoginController.dart';
 
@@ -11,31 +11,79 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: screenW(1, context),
-        height: screenH(1, context),
-        decoration: BoxDecoration(gradient: backGradient()),
-        child: Form(
-          key: c.formKey,
-          child: Column(
+      body: SingleChildScrollView(
+        child: Container(
+          width: screenW(1, context),
+          height: screenH(1, context),
+          decoration: BoxDecoration(gradient: backGradient()),
+          child: Stack(
             children: [
-              Container(
-                width: screenW(0.7, context),
-                child: SvgPicture.asset("assets/Logo.svg"),
+              Form(
+                key: c.formKey,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(bottom: 48),
+                        width: screenW(0.50, context),
+                        child: Image.asset("assets/Logo.png"),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(bottom: 16),
+                        child: Text(
+                          "Please enter your user name and password.",
+                          style: t2(),
+                        ),
+                      ),
+                      Visibility(
+                          visible: c.showTitleUsername,
+                          child: Text(
+                            "Username",
+                            style: t1(),
+                          )),
+                      Container(
+                        margin: EdgeInsets.only(bottom: 32),
+                        child: textBox(
+                            "Username",
+                            false,
+                            () => c.clear(c.userNameCont),
+                            c.userNameCont,
+                            (val) => c.change()),
+                      ),
+                      Container(
+                        child: textBox(
+                            "Password",
+                            true,
+                            () => c.clear(c.passwordCont),
+                            c.passwordCont,
+                            (val) => c.change()),
+                      ),
+                      GetBuilder<LoginController>(builder: (_) {
+                        if (c.isLoading == true) {
+                          return errorDialog("Wrong Username or Password.");
+                        } else {
+                          return Container();
+                        }
+                      }),
+                    ],
+                  ),
+                ),
               ),
-              Container(
-                child: textBox("Username", false),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  width: screenW(0.9, context),
+                  padding: EdgeInsets.symmetric(vertical: 32),
+                  child: greenButton("LOGIN", c.opacity, () {
+                    if (c.formKey.currentState.validate()) {
+                      c.login();
+                    }
+                    print("button pressed");
+                  }),
+                ),
               ),
-              Container(
-                child: textBox("Password", true),
-              ),
-              Container(
-                child: greenButton("LOGIN", c.opacity, () {
-                  if (c.formKey.currentState.validate()) {}
-                  print("button pressed");
-                  c.login();
-                }),
-              )
             ],
           ),
         ),

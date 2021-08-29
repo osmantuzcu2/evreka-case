@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "551306534613",
+    "firebase_url": "https://evreka-43d96-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "evreka-43d96",
+    "storage_bucket": "evreka-43d96.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551306534613:android:4c5df6b33815de52e98c5c",
+        "android_client_info": {
+          "package_name": "com.example.evrekacase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "551306534613-vgphndkrm41g902ioki6pcpglc7j9kmm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABbI3seUn7OIOBw1pdUCGMCz1gIqXnpRg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "551306534613-vgphndkrm41g902ioki6pcpglc7j9kmm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

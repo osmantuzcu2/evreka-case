@@ -40,7 +40,7 @@ final DarkGrey = HexColor("#535A72");
 final LightColor = HexColor("#FBFCFF");
 final Green = HexColor("#3BA935");
 final ErrorColor = HexColor("#FC3131");
-final ShadowColor = HexColor("#00000029");
+final ShadowColor = HexColor("#BBBBBB");
 final ShadowColorGreen = HexColor("#72C875");
 final BorderColor = HexColor("#E1E1E1");
 
@@ -49,6 +49,11 @@ final BorderColor = HexColor("#E1E1E1");
 TextStyle h3() => TextStyle(
     color: DarkBlue,
     fontSize: 20,
+    fontFamily: "Open Sans",
+    fontWeight: FontWeight.bold);
+TextStyle h4() => TextStyle(
+    color: DarkGrey,
+    fontSize: 16,
     fontFamily: "Open Sans",
     fontWeight: FontWeight.bold);
 TextStyle t2() => TextStyle(
@@ -68,7 +73,7 @@ TextStyle t1() => TextStyle(
     fontWeight: FontWeight.normal);
 TextStyle inputBoxLabelFilled() => TextStyle(
     color: ShadowColor,
-    fontSize: 12,
+    fontSize: 16,
     fontFamily: "Open Sans",
     fontWeight: FontWeight.normal);
 TextStyle inputBoxLabelActive() => TextStyle(

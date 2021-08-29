@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:evrekacase/modules/GlobalWidgets/Dialogs.dart';
+import 'package:evrekacase/modules/HomePage/HomePageScreen.dart';
 import 'package:evrekacase/modules/Login/LoginModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,31 +11,47 @@ class LoginController extends GetxController {
   TextEditingController passwordCont = TextEditingController();
   var formKey = GlobalKey<FormState>();
   bool isLoading = false;
-  double opacity = 0.3;
-  var json;
+  double opacity = 1;
+  Map<String, dynamic> json;
+  bool showTitleUsername = true;
 
   @override
   void onInit() {
     init();
+    userNameCont.text = "demo";
+    passwordCont.text = "demo";
     super.onInit();
   }
 
   init() {
-    json = jsonEncode({
+    json = {
       "Id": "7",
-      "UserName": "osmantuzcu",
-      "Password": "123456",
-      "UserType": "admin",
-      "Name": "Osman",
-      "LastName": "Tuzcu",
-      "EMail": "osman@ss.ss",
-      "Phone": "000000000",
-      "Status": "true",
-      "Token": "token"
-    });
+      "UserName": "demo",
+      "Password": "demo",
+    };
   }
 
   login() {
-    LoginModel.fromJson(json);
+    update();
+    var response = LoginModel.fromJson(json);
+    if (response.userName == userNameCont.text &&
+        response.password == passwordCont.text) {
+      Get.off(HomePageScreen());
+    } else {
+      isLoading = true;
+      update();
+    }
+  }
+
+  clear(TextEditingController cont) {
+    cont.clear();
+    update();
+  }
+
+  change() {
+    if (userNameCont.text != "") {
+      showTitleUsername = false;
+      update();
+    }
   }
 }
