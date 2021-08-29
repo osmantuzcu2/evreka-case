@@ -11,6 +11,7 @@ class SplashController extends GetxController {
   }
 
   connectivity() async {
+    //Connectivity Check
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.none) {
       Get.dialog(
