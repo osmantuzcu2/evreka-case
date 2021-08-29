@@ -29,36 +29,3 @@ class MarkerModel {
         "lng": lng,
       };
 }
-
-class MarkerModelFireBase {
-  MarkerModelFireBase({
-    this.next,
-    this.lng,
-    this.fullness,
-    this.name,
-    this.lat,
-  });
-
-  DateTime next;
-  double lng;
-  double fullness;
-  String name;
-  double lat;
-
-  factory MarkerModelFireBase.fromJson(Map<String, dynamic> json) =>
-      MarkerModelFireBase(
-        next: DateTime.parse(json["next"]),
-        lng: json["lng"].toDouble(),
-        fullness: json["fullness"].toDouble(),
-        name: json["name"],
-        lat: json["lat"].toDouble(),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "next": next.toIso8601String(),
-        "lng": lng,
-        "fullness": fullness,
-        "name": name,
-        "lat": lat,
-      };
-}

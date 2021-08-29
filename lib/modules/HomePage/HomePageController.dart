@@ -25,13 +25,14 @@ class HomePageController extends GetxController {
   bool isContainerDetailShow = false;
   bool isRelocationActive = false;
   bool isFirstOpen = false;
+  bool isLoading = false;
   double newMarkersLat;
   double newMarkersLng;
 
   @override
   void onInit() {
+    //2 different marker icons were used according to the fullness.
     customIconCreate();
-
     super.onInit();
   }
 
@@ -40,6 +41,7 @@ class HomePageController extends GetxController {
             ImageConfiguration(size: Size(128, 128)), 'assets/Green.png')
         .then((d) {
       greenIcon = d;
+      //"await" going to crazy sometimes because of harware render. So I used "then" method
       yellowIconCreate();
     });
   }
@@ -54,22 +56,31 @@ class HomePageController extends GetxController {
   }
 
   getMarkersFromFireBase() async {
+    isLoading = true;
+    update();
+    // Get Markers from Firebase RTDB
     var snapshot = await markersFirebase.once();
     if (snapshot.value == null) {
+      // if First open app you can generate points around the main point. This boolean variable manages generate Dialog on HomePageScreen
       isFirstOpen = true;
     } else {
+      // Get Markers
       var results = snapshot.value.values as Iterable;
       print(snapshot.value);
       for (var item in results) {
         double fullness = double.tryParse(item["fullness"]);
         if (fullness == null) {
+          //Some fullness values coming null because of my create function is not working well. So I accepted them zero.
           customIcon = greenIcon;
-        } else {
+        } else if (fullness > 20) {
           customIcon = yelloWIcon;
+        } else {
+          customIcon = greenIcon;
         }
-
+        //Parsed for using relocation
         double lat = double.tryParse(item["lat"]);
         double lng = double.tryParse(item["lng"]);
+        //Add marker
         markers.add(Marker(
             position: LatLng(lat, lng),
             markerId: MarkerId(item["name"]),
@@ -78,37 +89,52 @@ class HomePageController extends GetxController {
                 item["name"], item["next"], item["fullness"], lat, lng)));
       }
     }
+    isLoading = false;
+    //Update Widgets.
     update();
   }
 
   showContainerDetail(
-      String name, String next, String fullness, double lat, double lng) {
+      //This shows information on Dialog when user taps marker
+      String name,
+      String next,
+      String fullness,
+      double lat,
+      double lng) {
     containerDetailname = name;
     containerDetailnext = next;
+    //if fullness null accepted zero.
     fullness == "null"
         ? containerDetailfullness = "0.0"
         : containerDetailfullness = fullness;
     containerDetailLat = lat;
     containerDetailLng = lng;
+    //Show Detail Dialog
     isContainerDetailShow = true;
+    //Update Widgets.
     update();
   }
 
   addNewMarker(LatLng value) {
     if (isRelocationActive) {
+      //If tapped relocation button and long pressed by user
       newMarkersLat = value.latitude;
       newMarkersLng = value.longitude;
+      //clear other markers
       markers.clear();
+      //Add new marker on screen
       markers.add(Marker(
         position: LatLng(value.latitude, value.longitude),
         markerId: MarkerId("newMarker"),
         icon: greenIcon,
       ));
+      //Update Widgets.
       update();
     }
   }
 
   relocate() {
+    //Activate Relocation Screen
     isRelocationActive = true;
     isContainerDetailShow = false;
     markers.clear();
@@ -116,19 +142,25 @@ class HomePageController extends GetxController {
   }
 
   updateLocation() {
+    //Saves to Firebase rtdb and enden relocation screen
     isRelocationActive = false;
     isContainerDetailShow = false;
     markersFirebase.child(containerDetailname).update(
         {'lat': newMarkersLat.toString(), 'lng': newMarkersLng.toString()});
     Get.snackbar("Confirmed", "Your bin has been relocated successfully!");
+    //Clear all markers and refetch from db
     markers.clear();
     getMarkersFromFireBase();
+    //Update Widgets.
     update();
   }
 
   createFireBaseDB() {
+    isLoading = true;
+    update();
+    //This code adds 1000 point around the main point. This code not working very well but doing its job.
     var rnd = new Random();
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 1000; i++) {
       double lt;
       double ln;
       double fullness;
@@ -152,6 +184,7 @@ class HomePageController extends GetxController {
       markersFirebase.child("Container" + i.toString()).set(marker.toJson());
       isFirstOpen = false;
       getMarkersFromFireBase();
+      isLoading = false;
       update();
     }
   }

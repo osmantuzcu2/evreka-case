@@ -37,31 +37,25 @@ class LoginScreen extends StatelessWidget {
                           style: t2(),
                         ),
                       ),
-                      Visibility(
-                          visible: c.showTitleUsername,
-                          child: Text(
-                            "Username",
-                            style: t1(),
-                          )),
                       Container(
                         margin: EdgeInsets.only(bottom: 32),
                         child: textBox(
-                            "Username",
-                            false,
-                            () => c.clear(c.userNameCont),
-                            c.userNameCont,
-                            (val) => c.change()),
+                          "Username",
+                          false,
+                          () => c.clear(c.userNameCont),
+                          c.userNameCont,
+                        ),
                       ),
                       Container(
                         child: textBox(
-                            "Password",
-                            true,
-                            () => c.clear(c.passwordCont),
-                            c.passwordCont,
-                            (val) => c.change()),
+                          "Password",
+                          true,
+                          () => c.clear(c.passwordCont),
+                          c.passwordCont,
+                        ),
                       ),
                       GetBuilder<LoginController>(builder: (_) {
-                        if (c.isLoading == true) {
+                        if (c.isError == true) {
                           return errorDialog("Wrong Username or Password.");
                         } else {
                           return Container();

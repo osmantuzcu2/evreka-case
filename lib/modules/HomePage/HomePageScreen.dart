@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:evrekacase/modules/GlobalWidgets/Buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -65,7 +64,7 @@ class HomePageScreen extends StatelessWidget {
                                         style: h4(),
                                       ),
                                       Text(
-                                        c.containerDetailfullness,
+                                        c.containerDetailfullness + "%",
                                         style: t1(),
                                       ),
                                       Padding(padding: EdgeInsets.all(3)),
@@ -136,6 +135,14 @@ class HomePageScreen extends StatelessWidget {
                               ],
                             ),
                           ));
+                    } else if (c.isLoading) {
+                      return Container(
+                        width: screenW(0.3, context),
+                        height: screenW(0.3, context),
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
                     } else {
                       return Container();
                     }

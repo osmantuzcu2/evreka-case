@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
-
 import '../../helper.dart';
 import 'package:flutter/material.dart';
 
-Widget textBox(String hint, bool password, Function() func,
-    TextEditingController cont, Function() changeFunc(val)) {
+Widget textBox(
+    String hint, bool password, Function() func, TextEditingController cont) {
   return TextFormField(
     controller: cont,
     obscureText: password,
@@ -14,7 +13,6 @@ Widget textBox(String hint, bool password, Function() func,
       }
       return null;
     },
-    onChanged: changeFunc,
     decoration: InputDecoration(
         hintText: hint,
         suffixIcon: GestureDetector(
