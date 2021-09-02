@@ -1,10 +1,10 @@
 import 'package:evrekacase/helper.dart';
-import 'package:evrekacase/modules/GlobalWidgets/Buttons.dart';
-import 'package:evrekacase/modules/GlobalWidgets/Dialogs.dart';
-import 'package:evrekacase/modules/GlobalWidgets/TextFields.dart';
+import 'package:evrekacase/modules/global_widgets/buttons.dart';
+import 'package:evrekacase/modules/global_widgets/dialogs.dart';
+import 'package:evrekacase/modules/global_widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'LoginController.dart';
+import 'login_controller.dart';
 
 class LoginScreen extends StatelessWidget {
   final LoginController c = Get.put(LoginController());
@@ -21,24 +21,24 @@ class LoginScreen extends StatelessWidget {
               Form(
                 key: c.formKey,
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(bottom: 48),
+                        margin: const EdgeInsets.only(bottom: 48),
                         width: screenW(0.50, context),
                         child: Image.asset("assets/Logo.png"),
                       ),
                       Container(
-                        margin: EdgeInsets.only(bottom: 16),
+                        margin: const EdgeInsets.only(bottom: 16),
                         child: Text(
                           "Please enter your user name and password.",
                           style: t2(),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(bottom: 32),
+                        margin: const EdgeInsets.only(bottom: 32),
                         child: textBox(
                           "Username",
                           false,
@@ -69,12 +69,12 @@ class LoginScreen extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: Container(
                   width: screenW(0.9, context),
-                  padding: EdgeInsets.symmetric(vertical: 32),
+                  padding: const EdgeInsets.symmetric(vertical: 32),
                   child: greenButton("LOGIN", c.opacity, () {
                     if (c.formKey.currentState.validate()) {
                       c.login();
                     }
-                    print("button pressed");
+                    // print("button pressed");
                   }),
                 ),
               ),

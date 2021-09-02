@@ -8,15 +8,14 @@ Widget greenButton(String text, double opc, Function() func) {
       opacity: opc,
       child: Container(
           height: 45,
-          padding: EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           decoration: BoxDecoration(
-            color: Green,
+            color: green,
             boxShadow: [
               BoxShadow(
-                color: ShadowColorGreen,
+                color: shadowColorGreen,
                 spreadRadius: 1.5,
                 blurRadius: 8,
-                offset: Offset(0, 0),
               ),
             ],
             borderRadius: const BorderRadius.all(Radius.circular(5)),

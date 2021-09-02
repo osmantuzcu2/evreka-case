@@ -1,7 +1,8 @@
 import 'package:connectivity/connectivity.dart';
-import '../GlobalWidgets/Dialogs.dart';
 import 'package:get/get.dart';
-import '../Login/LoginScreen.dart';
+
+import '../global_widgets/dialogs.dart';
+import '../login/login_screen.dart';
 
 class SplashController extends GetxController {
   @override
@@ -10,9 +11,9 @@ class SplashController extends GetxController {
     super.onInit();
   }
 
-  connectivity() async {
-    //Connectivity Check
-    var connectivityResult = await (Connectivity().checkConnectivity());
+  ///Connectivity Check
+  dynamic connectivity() async {
+    final connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
       Get.dialog(
         errorDialog("Please Check Your Connectivity"),

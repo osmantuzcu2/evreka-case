@@ -7,19 +7,19 @@ class MarkerModel {
     this.lng,
   });
 
-  String name;
-  String next;
-  String fullness;
-  String lat;
-  String lng;
-
-  factory MarkerModel.fromJson(Map<String, dynamic> json) => MarkerModel(
+  factory MarkerModel.fromJson(Map<String, String> json) => MarkerModel(
         name: json["name"],
         next: json["next"],
         fullness: json["fullness"],
         lat: json["lat"],
         lng: json["lng"],
       );
+
+  String name;
+  String next;
+  String fullness;
+  String lat;
+  String lng;
 
   Map<String, dynamic> toJson() => {
         "name": name,

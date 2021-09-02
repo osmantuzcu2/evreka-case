@@ -1,15 +1,15 @@
-import 'package:evrekacase/modules/HomePage/HomePageScreen.dart';
-import 'package:evrekacase/modules/Login/LoginModel.dart';
+import 'package:evrekacase/modules/home_page/home_page_screen.dart';
+import 'package:evrekacase/modules/login/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
   TextEditingController userNameCont = TextEditingController();
   TextEditingController passwordCont = TextEditingController();
-  var formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool isError = false;
   double opacity = 1;
-  Map<String, dynamic> json;
+  Map<String, String> json;
   bool showTitleUsername = true;
 
   @override
@@ -22,7 +22,7 @@ class LoginController extends GetxController {
     super.onInit();
   }
 
-  init() {
+  void init() {
     //Demo username password are here. You can connect your own Rast Api.
     json = {
       "Id": "7",
@@ -31,9 +31,9 @@ class LoginController extends GetxController {
     };
   }
 
-  login() {
+  void login() {
     //If Username and password match Route to Home Page else shows Error Dialog
-    var response = LoginModel.fromJson(json);
+    final response = LoginModel.fromJson(json);
     if (response.userName == userNameCont.text &&
         response.password == passwordCont.text) {
       Get.off(HomePageScreen());
@@ -43,7 +43,7 @@ class LoginController extends GetxController {
     }
   }
 
-  clear(TextEditingController cont) {
+  void clear(TextEditingController cont) {
     //TextEditingControllers clear method
     cont.clear();
     update();

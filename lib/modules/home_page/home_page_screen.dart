@@ -1,10 +1,10 @@
-import 'package:evrekacase/modules/GlobalWidgets/Buttons.dart';
+import 'package:evrekacase/modules/global_widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import '../../helper.dart';
-import 'HomePageController.dart';
+import 'home_page_controller.dart';
 
 class HomePageScreen extends StatelessWidget {
   final HomePageController c = Get.put(HomePageController());
@@ -27,7 +27,6 @@ class HomePageScreen extends StatelessWidget {
                   compassEnabled: false,
                   mapToolbarEnabled: false,
                   myLocationButtonEnabled: false,
-                  mapType: MapType.normal,
                   onLongPress: (value) {
                     c.addNewMarker(value);
                   },
@@ -42,8 +41,8 @@ class HomePageScreen extends StatelessWidget {
                       return mapDialog(
                           context,
                           Container(
-                              margin: EdgeInsets.symmetric(horizontal: 8),
-                              padding: EdgeInsets.only(left: 12),
+                              margin: const EdgeInsets.symmetric(horizontal: 8),
+                              padding: const EdgeInsets.only(left: 12),
                               child: Stack(
                                 children: [
                                   Column(
@@ -64,10 +63,10 @@ class HomePageScreen extends StatelessWidget {
                                         style: h4(),
                                       ),
                                       Text(
-                                        c.containerDetailfullness + "%",
+                                        "${c.containerDetailfullness}%",
                                         style: t1(),
                                       ),
-                                      Padding(padding: EdgeInsets.all(3)),
+                                      const Padding(padding: EdgeInsets.all(3)),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceAround,
@@ -93,7 +92,7 @@ class HomePageScreen extends StatelessWidget {
                                           c.isContainerDetailShow = false;
                                           c.update();
                                         },
-                                        icon: Icon(Icons.close)),
+                                        icon: const Icon(Icons.close)),
                                   )
                                 ],
                               )));
@@ -101,8 +100,8 @@ class HomePageScreen extends StatelessWidget {
                       return mapDialog(
                           context,
                           Container(
-                              margin: EdgeInsets.symmetric(horizontal: 8),
-                              padding: EdgeInsets.only(left: 12),
+                              margin: const EdgeInsets.symmetric(horizontal: 8),
+                              padding: const EdgeInsets.only(left: 12),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -110,7 +109,7 @@ class HomePageScreen extends StatelessWidget {
                                     "Please select a location from the map for your bin to be relocated. You can select a location by long press on the map.",
                                     style: t1(),
                                   ),
-                                  Padding(padding: EdgeInsets.all(8)),
+                                  const Padding(padding: EdgeInsets.all(8)),
                                   greenButton("SAVE", 1, () {
                                     c.updateLocation();
                                   }),
@@ -120,15 +119,15 @@ class HomePageScreen extends StatelessWidget {
                       return mapDialog(
                           context,
                           Container(
-                            margin: EdgeInsets.symmetric(horizontal: 8),
-                            padding: EdgeInsets.only(left: 12),
+                            margin: const EdgeInsets.symmetric(horizontal: 8),
+                            padding: const EdgeInsets.only(left: 12),
                             child: Column(
                               children: [
                                 Text(
                                   "We will generate 1000 points close to your location. This dialog will no longer appear.",
                                   style: t1(),
                                 ),
-                                Padding(padding: EdgeInsets.all(8)),
+                                const Padding(padding: EdgeInsets.all(8)),
                                 greenButton("GENERATE", 1, () {
                                   c.createFireBaseDB();
                                 }),
@@ -136,10 +135,10 @@ class HomePageScreen extends StatelessWidget {
                             ),
                           ));
                     } else if (c.isLoading) {
-                      return Container(
+                      return SizedBox(
                         width: screenW(0.3, context),
                         height: screenW(0.3, context),
-                        child: Center(
+                        child: const Center(
                           child: CircularProgressIndicator(),
                         ),
                       );
@@ -156,20 +155,19 @@ class HomePageScreen extends StatelessWidget {
     return Container(
         width: screenW(0.9, context),
         height: screenH(0.33, context),
-        margin: EdgeInsets.only(bottom: 20),
+        margin: const EdgeInsets.only(bottom: 20),
         decoration: BoxDecoration(
-          color: LightColor,
+          color: lightColor,
           boxShadow: [
             BoxShadow(
-              color: ShadowColor,
+              color: shadowColor,
               spreadRadius: 1.5,
               blurRadius: 8,
-              offset: Offset(0, 0),
             ),
           ],
           borderRadius: const BorderRadius.all(Radius.circular(8)),
         ),
-        padding: EdgeInsets.only(top: 15, bottom: 15, left: 8, right: 8),
+        padding: const EdgeInsets.only(top: 15, bottom: 15, left: 8, right: 8),
         child: wd);
   }
 }

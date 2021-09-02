@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'SplashController.dart';
+import 'splash_controller.dart';
 
 class SplashScreen extends StatelessWidget {
   final SplashController c = Get.put(SplashController());
@@ -8,10 +8,8 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      child: Center(
-        child: Image.asset("assets/Logo.png"),
-      ),
+        body: Center(
+      child: Image.asset("assets/Logo.png"),
     ));
   }
 }
