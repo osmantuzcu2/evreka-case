@@ -11,7 +11,7 @@ class SplashController extends GetxController {
     super.onInit();
   }
 
-  ///Connectivity Check
+  ///Connectivity Check/
   dynamic connectivity() async {
     final connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
