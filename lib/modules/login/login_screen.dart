@@ -1,9 +1,9 @@
-import 'package:evrekacase/helper.dart';
-import 'package:evrekacase/modules/global_widgets/buttons.dart';
-import 'package:evrekacase/modules/global_widgets/dialogs.dart';
-import 'package:evrekacase/modules/global_widgets/text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../helper.dart';
+import '../global_widgets/buttons.dart';
+import '../global_widgets/dialogs.dart';
+import '../global_widgets/text_fields.dart';
 import 'login_controller.dart';
 
 class LoginScreen extends StatelessWidget {

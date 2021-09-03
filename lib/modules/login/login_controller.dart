@@ -1,7 +1,7 @@
-import 'package:evrekacase/modules/home_page/home_page_screen.dart';
-import 'package:evrekacase/modules/login/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../home_page/home_page_screen.dart';
+import 'login_model.dart';
 
 class LoginController extends GetxController {
   TextEditingController userNameCont = TextEditingController();

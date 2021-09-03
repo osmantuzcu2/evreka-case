@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:math';
-import 'package:evrekacase/modules/home_page/marker_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'marker_model.dart';
 
 class HomePageController extends GetxController {
   Completer<GoogleMapController> controller = Completer();
