@@ -1,7 +1,7 @@
 # evrekacase
 
 EvrekaCase is a location-based container tracking application developed with flutter. Users can see each containers fullness and they can relocate them. Users can navigate to containers.
-
+<img src="https://raw.githubusercontent.com/osmantuzcu2/evreka-case/main/assets/docs/ss.jpg">
 ## Dependencies
   connectivity : for check device connectivitiy
   firebase_database : for connect realtime database

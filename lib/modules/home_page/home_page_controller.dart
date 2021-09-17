@@ -84,16 +84,18 @@ class HomePageController extends GetxController {
         final double lat = double.tryParse(item["lat"].toString());
         final double lng = double.tryParse(item["lng"].toString());
         //Add marker
-        markers.add(Marker(
-            position: LatLng(lat, lng),
-            markerId: MarkerId(item["name"].toString()),
-            icon: customIcon,
-            onTap: () => showContainerDetail(
-                item["name"].toString(),
-                item["next"].toString(),
-                item["fullness"].toString(),
-                lat,
-                lng)));
+        if (lat != null) {
+          markers.add(Marker(
+              position: LatLng(lat, lng),
+              markerId: MarkerId(item["name"].toString()),
+              icon: customIcon,
+              onTap: () => showContainerDetail(
+                  item["name"].toString(),
+                  item["next"].toString(),
+                  item["fullness"].toString(),
+                  lat,
+                  lng)));
+        }
       }
     }
     isLoading = false;
