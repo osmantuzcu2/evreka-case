@@ -11,12 +11,12 @@ EvrekaCase is a location-based container tracking application developed with flu
   maps_launcher : for launch navigation
 
 ## Folder Structure
-    Each module has a View, Model, Controller, Service dart file.This way, you don't have to navigate much outside of the folder you're working in.
-    Global widgets contain recursively used widgets.
-    Views contain widgets and everything can be seen.
-    Models contain data models for json responses.
-    Controllers using Getx State Management library.
-    Services contain network communications.
+Each module has a View, Model, Controller, Service dart file.This way, you don't have to navigate much outside of the folder you're working in.
+Global widgets contain recursively used widgets.
+Views contain widgets and everything can be seen.
+Models contain data models for json responses.
+Controllers using Getx State Management library.
+Services contain network communications.
 
 <img src="https://raw.githubusercontent.com/osmantuzcu2/evreka-case/main/assets/docs/folder.jpg">
 
