@@ -17,7 +17,7 @@ EvrekaCase is a location-based container tracking application developed with flu
     #Models contain data models for json responses.
     #Controllers using Getx State Management library.
     #Services contain network communications.
-<img src"https://raw.githubusercontent.com/osmantuzcu2/evreka-case/main/assets/docs/folder.jpg">
+<img src="https://raw.githubusercontent.com/osmantuzcu2/evreka-case/main/assets/docs/folder.jpg">
 
 ## How to build
     1- Flutter v.2.X must be installed and enviroment must be ready. See more : https://flutter.dev/docs/get-started/install
